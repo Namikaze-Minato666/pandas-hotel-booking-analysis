@@ -11,6 +11,7 @@ from pathlib import Path
 
 NOTEBOOKS = [
     "notebooks/02_cancellation_demand_analysis.ipynb",
+    "notebooks/03_customer_channel_analysis.ipynb",
     "notebooks/04_price_revenue_analysis.ipynb",
     "notebooks/05_stay_leadtime_behavior_analysis.ipynb",
 ]
@@ -19,7 +20,7 @@ NOTEBOOKS = [
 def execute_notebook_code_cells(notebook_path):
     print(f"=== executing {notebook_path} ===")
     namespace = {"__name__": "__main__"}
-    notebook = json.loads(Path(notebook_path).read_text(encoding="utf-8"))
+    notebook = json.loads(Path(notebook_path).read_text(encoding="utf-8-sig"))
 
     for index, cell in enumerate(notebook["cells"], 1):
         if cell.get("cell_type") != "code":

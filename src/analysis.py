@@ -62,7 +62,7 @@ def calculate_monthly_demand_trend(df):
 
 
 def calculate_group_summary(df, group_col):
-    """按指定字段分组，返回预订量、取消率、平均ADR（按预订量降序）。"""
+    """按指定字段分组，返回预订量、取消率、全量平均ADR（按预订量降序）。"""
     grouped = df.groupby(group_col).agg(
         total_bookings=("is_canceled", "count"),
         canceled_bookings=("is_canceled", "sum"),
@@ -96,12 +96,12 @@ def prepare_revenue_data(df):
         total_nights      — 入住总晚数（从原始列重新计算）
         estimated_revenue — adr * total_nights
 
-    过滤条件：is_canceled == 0, adr >= 0, total_nights > 0
+    过滤条件：is_canceled == 0, adr > 0, total_nights > 0
     """
     df = df.copy()
     df["total_nights"] = df["stays_in_weekend_nights"] + df["stays_in_week_nights"]
     df["estimated_revenue"] = df["adr"] * df["total_nights"]
-    valid = df[(df["is_canceled"] == 0) & (df["adr"] >= 0) & (df["total_nights"] > 0)]
+    valid = df[(df["is_canceled"] == 0) & (df["adr"] > 0) & (df["total_nights"] > 0)]
     return valid
 
 
@@ -217,6 +217,9 @@ def add_stay_lead_features(df):
 
 def _merge_revenue_stats(all_stats, non_canceled, group_col):
     """将全量统计与非取消订单的收入统计合并。"""
+    non_canceled = non_canceled[
+        (non_canceled["adr"] > 0) & (non_canceled["total_nights"] > 0)
+    ]
     rev = non_canceled.groupby(group_col).agg(
         avg_adr=("adr", "mean"),
         total_estimated_revenue=("estimated_revenue", "sum"),

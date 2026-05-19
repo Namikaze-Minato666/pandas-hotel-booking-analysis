@@ -15,7 +15,7 @@ def create_features(df):
     - arrival_date     : 由年月日拼接而成的日期
     - total_nights      : 总入住天数（周末 + 平日）
     - total_guests      : 总入住人数（成人 + 儿童 + 婴儿）
-    - is_family         : 是否为家庭客（有儿童即为家庭）
+    - is_family         : 是否为家庭客（有儿童或婴儿即为家庭）
     - lead_time_group   : 提前预订天数分组（包含 lead_time=0）
     - adr_level         : 日均房价水平（低/中/高/异常免费）
     - season            : 入住月份所属季节
@@ -39,7 +39,7 @@ def create_features(df):
     df["total_guests"] = df["adults"] + df["children"] + df["babies"]
 
     # --- 是否家庭客 ---
-    df["is_family"] = (df["children"] > 0).astype(int)
+    df["is_family"] = ((df["children"] + df["babies"]) > 0).astype(int)
 
     # --- 提前预订天数分组（bins 起点为 -1 确保 lead_time=0 归入第一组） ---
     bins = [-1, 7, 30, 90, 180, float("inf")]
