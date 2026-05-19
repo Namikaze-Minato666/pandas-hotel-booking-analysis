@@ -12,16 +12,11 @@
 
 ---
 
-## 数据集说明
+## 数据说明
 
-| 项目 | 详情 |
-|------|------|
-| 数据来源 | `data/raw/hotel_bookings.csv` |
-| 数据规模 | 119,390 条预订记录 × 32 个原始字段 |
-| 数据粒度 | 每条记录代表一次独立的酒店预订 |
-| 时间范围 | 约 3 年的预订数据 |
-| 目标字段 | `is_canceled`（0 = 未取消，1 = 取消） |
-| 核心字段 | `hotel`, `lead_time`, `arrival_date`, `market_segment`, `customer_type`, `adr`, `total_of_special_requests`, `country`, `deposit_type` |
+本项目不上传原始数据文件。原始数据请从 Kaggle Hotel Booking Demand Dataset 下载后放入 `data/raw/` 目录。
+
+仓库中保留清洗后的数据文件 `data/processed/hotel_bookings_cleaned.csv`，用于复现后续分析与可视化结果。
 
 ---
 
@@ -36,10 +31,8 @@ Python · Pandas · NumPy · Matplotlib · Seaborn · Jupyter Notebook · VS Cod
 ```
 .
 ├── data/
-│   ├── raw/
-│   │   └── hotel_bookings.csv                 # 原始数据
 │   └── processed/
-│       └── hotel_bookings_cleaned.csv         # 清洗后数据（运行 notebook 01 生成）
+│       └── hotel_bookings_cleaned.csv
 │
 ├── notebooks/
 │   ├── 01_data_overview_cleaning.ipynb        # 数据概览与清洗
