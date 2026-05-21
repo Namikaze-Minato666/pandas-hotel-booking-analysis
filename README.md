@@ -1,4 +1,4 @@
-﻿# Hotel Booking Cancellation and Demand Analysis
+# Hotel Booking Cancellation and Demand Analysis
 
 基于 Pandas 的酒店预订取消与客户需求分析
 
@@ -22,7 +22,7 @@
 
 ## 技术栈
 
-Python · Pandas · NumPy · Matplotlib · Seaborn · Jupyter Notebook · VS Code · Claude Code
+Python · Pandas · NumPy · Matplotlib · Seaborn · Jupyter Notebook · VS Code 
 
 ---
 
