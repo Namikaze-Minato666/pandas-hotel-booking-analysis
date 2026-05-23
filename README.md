@@ -229,7 +229,7 @@ City Hotel 的 1 晚订单单笔收入较低。可评估在非高峰时段设置
 
 ```bash
 # 1. 克隆项目
-git clone <repo-url>
+git clone https://github.com/Namikaze-Minato666/pandas-hotel-booking-analysis.git
 cd pandas-hotel-booking-analysis
 
 # 2. 安装依赖
